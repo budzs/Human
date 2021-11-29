@@ -325,8 +325,8 @@ while True:
             cv2.imwrite("files/20211114_132016/" + str(pic) + ".png", img)
             pic += 1
 
-    cv2.imshow('eyes', img)
-    cv2.imshow("image", thresh)
+    #cv2.imshow('eyes', img)
+    #cv2.imshow("image", thresh)
     playback.resume()
     if cv2.waitKey(1) == 27:
         break
