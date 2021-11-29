@@ -322,7 +322,7 @@ while True:
             shape = shape_to_np(shape)
             img, thresh = masking(shape, img, True)
             looking_at()
-            cv2.imwrite("files/20211114_132016/" + str(pic) + ".png", img)
+            cv2.imwrite("D:\\PycharmProjects\\pythonProject2\\files\\20211114_132016\\" + str(pic) + ".png", img)
             pic += 1
 
     #cv2.imshow('eyes', img)

@@ -11,7 +11,7 @@ l_center = [200, 200]
 previous_ratio = 100
 blink = False
 
-rootdir = 'C:\\Users\\budai\\PycharmProjects\\pythonProject2\\real_and_fake_face\\training_real'
+rootdir = 'D:\\PycharmProjects\\pythonProject2\\real_and_fake_face\\training_real'
 detector = dlib.get_frontal_face_detector()
 try:
     predictor = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat")
@@ -207,15 +207,15 @@ def looking_at(img):
     if abs(num) < 5:
         text = "CENTER"
         cv2.putText(img, text, (30, 80), cv2.FONT_HERSHEY_PLAIN, 2, (0, 0, 255), 5)
-        cv2.imwrite('real_and_fake_face/detected/center/' + file, img)
+        cv2.imwrite('D:\\PycharmProjects\\pythonProject2\\real_and_fake_face\\detected\\center\\' + file, img)
     elif num > 5:
         text = "LEFT"
         cv2.putText(img, text, (30, 80), cv2.FONT_HERSHEY_PLAIN, 2, (0, 0, 255), 5)
-        cv2.imwrite('real_and_fake_face/detected/left/' + file, img)
+        cv2.imwrite('D:\\PycharmProjects\\pythonProject2\\real_and_fake_face\\detected\\left\\' + file, img)
     elif num < -5:
         text = "RIGHT"
         # cv2.putText(img, text, (30, 80), cv2.FONT_HERSHEY_PLAIN, 2, (0, 0, 255), 5)
-        cv2.imwrite('real_and_fake_face/detected/right/' + file, img)
+        cv2.imwrite('D:\\PycharmProjects\\pythonProject2\\real_and_fake_face\\detected\\right\\' + file, img)
 
 
 for subdir, dirs, files in os.walk(rootdir):
@@ -227,7 +227,7 @@ for subdir, dirs, files in os.walk(rootdir):
             gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
             rects = detector(gray)
             if len(rects) == 0:
-                cv2.imwrite('real_and_fake_face/detected/noface/' + file, img)
+                cv2.imwrite('D:\\PycharmProjects\\pythonProject2\\real_and_fake_face\\detected\\noface\\' + file, img)
                 continue
             for rect in rects:
                 shape = predictor(gray, rect)
@@ -240,13 +240,13 @@ for subdir, dirs, files in os.walk(rootdir):
                 if blinking_ratio < 0.18:
                     if previous_ratio >= 0.18:
                         blink = True
-                        cv2.imwrite('real_and_fake_face/detected/blinking/' + file, img)
+                        cv2.imwrite('D:\\PycharmProjects\\pythonProject2\\real_and_fake_face\\detected\\blinking\\' + file, img)
                         break
                 previous_ratio = blinking_ratio
                 if not blink:
                     shape = shape_to_np(shape)
                     eyes_gray = masking(shape, img, True)
-                    #looking_at(img)
+                    # looking_at(img)
                 blink = False
             # cv2.imshow('image', img)
 cv2.destroyAllWindows()
