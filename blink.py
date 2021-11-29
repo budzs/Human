@@ -236,9 +236,6 @@ for subdir, dirs, files in os.walk(rootdir):
                 left_eye_ratio = get_EAR(0, shape)
                 right_eye_ratio = get_EAR(1, shape)
                 blinking_ratio = (left_eye_ratio + right_eye_ratio) / 2
-                blinking_ratio_1 = blinking_ratio * 100
-                blinking_ratio_2 = np.round(blinking_ratio_1)
-                blinking_ratio_rounded = blinking_ratio_2 / 100
 
                 if blinking_ratio < 0.18:
                     if previous_ratio >= 0.18:
@@ -246,7 +243,6 @@ for subdir, dirs, files in os.walk(rootdir):
                         cv2.imwrite('real_and_fake_face/detected/blinking/' + file, img)
                         break
                 previous_ratio = blinking_ratio
-                # cv2.putText(img, str(blinking_ratio_rounded), (400, 50), cv2.FONT_HERSHEY_PLAIN, 2, (0, 0, 255), 5)
                 if not blink:
                     shape = shape_to_np(shape)
                     eyes_gray = masking(shape, img, True)
